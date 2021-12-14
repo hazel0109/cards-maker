@@ -1,11 +1,9 @@
 import './app.css';
-import Habit from './components/habit'
 
 function App() {
   return (
   <>
-    <div>Hi???</div>
-    <Habit/>;
+    <h1>Hello :)</h1>
   </>
   )
 }
