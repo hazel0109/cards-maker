@@ -1,10 +1,16 @@
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import styles from './app.module.css';
-import Login from './components/login/login';
+import MainContainer from './components/mainContainer/mainContainer';
 
 function App() {
   return (
     <div className={styles.app}>
-      <Login />
+      <BrowserRouter>
+        <Routes>
+          <Route path='*' exact element={<MainContainer />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

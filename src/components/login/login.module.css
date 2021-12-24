@@ -1,11 +1,5 @@
 @value makerBlack, makerGreen, makerWhite, makerLightPink from '../../common/colors.css';
 
-.container {
-  color: makerBlack;
-  width: 25vw;
-  text-align: center;
-}
-
 .main {
   background-color: makerWhite;
   padding: 0.8em 0.2em;

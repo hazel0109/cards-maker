@@ -1,6 +1,7 @@
 import {
   getAuth,
   signInWithPopup,
+  onAuthStateChanged,
   GoogleAuthProvider,
   GithubAuthProvider,
 } from 'firebase/auth';
@@ -8,7 +9,6 @@ import { firebaseApp } from './firebase';
 
 class AuthService {
   static login(providerName) {
-    console.log(providerName);
     let authProvider;
     if (providerName === 'Google') {
       authProvider = new GoogleAuthProvider();
@@ -19,6 +19,13 @@ class AuthService {
     // provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
     const auth = getAuth();
     return signInWithPopup(auth, authProvider);
+  }
+
+  static onAuthChange(onUserChanged) {
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      onUserChanged(user);
+    });
   }
 }
 
