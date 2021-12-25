@@ -1,38 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import styles from './login.module.css';
-import AuthService from '../../service/auth_service';
+// import useAuth from '../useAuth/useAuth';
 import { useNavigate } from 'react-router-dom';
+import AuthService from '../../service/auth_service';
 
 const Login = (props) => {
-  // const Login = ({ onLogin }) => {
-  const [err, setErr] = useState(null);
   const navigate = useNavigate();
+  // const result = useAuth();
 
-  const goToMain = (user) => {
-    navigate('/main', { state: user });
-  };
+  // console.log(useAuth);
+  // console.log(result);
 
   const onLogin = (event) => {
+    // console.log(login);
+    // login(event.currentTarget.textContent).then(() => navigate('/main'));
+    // navigate('/main');
     AuthService.login(event.currentTarget.textContent)
       .then((data) => {
-        goToMain({
-          id: data.user.uid,
-          name: data.user.displayName,
-          pic: data.user.photoURL,
-        });
+        // updateUser(data.user);
+        // setAuthed(true);
       })
       .catch((err) => {
-        setErr(true);
+        // setErr(true);
       });
   };
 
-  useEffect(() => {
-    AuthService.onAuthChange((user) => {
-      user &&
-        goToMain({ id: user.uid, name: user.displayName, pic: user.photoURL });
-    });
-    console.log('check');
-  }, []);
+  // useEffect(() => {
+  //   AuthService.onAuthChange((user) => {
+  //     user && navigate('/main', { state: user });
+  //   });
+  // }, []);
 
   return (
     <section className={styles.main}>

@@ -15,10 +15,13 @@ class AuthService {
     } else if (providerName === 'Github') {
       authProvider = new GithubAuthProvider();
     }
-
     // provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
     const auth = getAuth();
-    return signInWithPopup(auth, authProvider);
+    return signInWithPopup(auth, authProvider).then((result) => {
+      const credential = GithubAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+      console.log(token);
+    });
   }
 
   static onAuthChange(onUserChanged) {
