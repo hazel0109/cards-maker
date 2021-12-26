@@ -10,6 +10,41 @@ import AuthService from '../../service/auth_service';
 
 const Maker = ({ state }) => {
   const [userInfo, setUserInfo] = useState({});
+  const [cards, setCards] = useState([
+    {
+      id: '1',
+      name: 'Hazel',
+      company: 'Ramp',
+      theme: 'light',
+      title: 'Software Engineer',
+      email: 'hazel@gmail.com',
+      message: 'go for it',
+      fileName: 'hazel',
+      fileURL: null,
+    },
+    {
+      id: '2',
+      name: 'Jimmy',
+      company: 'Clearmax',
+      theme: 'dark',
+      title: 'Software Engineer',
+      email: 'jimmy@gmail.com',
+      message: 'go for it',
+      fileName: 'jimmy',
+      fileURL: null,
+    },
+    {
+      id: '3',
+      name: 'John',
+      company: 'Apple',
+      theme: 'colorful',
+      title: 'Software Engineer',
+      email: 'john@gmail.com',
+      message: 'go for it',
+      fileName: 'john',
+      fileURL: null,
+    },
+  ]);
   const navigate = useNavigate();
   const auth = useAuth();
 
@@ -30,8 +65,8 @@ const Maker = ({ state }) => {
     <section className={styles.maker}>
       <Header onLogout={onLogout} />
       <div className={styles.container}>
-        <CardEditor moveTo={moveTo} />
-        <CardPreview />
+        <CardEditor moveTo={moveTo} cards={cards} />
+        <CardPreview cards={cards} />
       </div>
       <Footer />
     </section>
