@@ -5,6 +5,7 @@
   padding: 0.3em;
   background-color: makerGreen;
   position: relative;
+  text-align: center;
 }
 
 .logout {
@@ -15,8 +16,15 @@
   padding: 0.1em 0.5em;
   outline: none;
   background-color: makerGrey;
-  border: 1px solid makerLightGrey;
+  border: 1px solid makerBlack;
   color: makerLightGrey;
+  transition: all 200ms ease-in;
+}
+
+.logout:hover {
+  background-color: makerLightGrey;
+  color: makerBlack;
+  transform: scale(1.02);
 }
 
 .white {

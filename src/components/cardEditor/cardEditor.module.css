@@ -1,0 +1,14 @@
+@value makerBlack, makerLightGrey, makerGrey, makerGreen, makerWhite from '../../common/colors.css';
+
+.editor {
+  height: 100%;
+  flex-basis: 50%;
+  border-right: 1px solid makerLightGrey;
+}
+
+.title {
+  width: 100%;
+  text-align: center;
+  margin: 1em 0;
+  color: makerGreen;
+}

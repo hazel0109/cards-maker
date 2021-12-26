@@ -1,22 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import styles from './mainContainer.module.css';
-import Header from '../header/header';
-import Footer from '../footer/footer';
+import React from 'react';
+// import styles from './mainContainer.module.css';
 import Login from '../login/login';
 import Test from '../test/test';
-import ContentContainer from '../ContentContainer/contentContainer';
 import ProtectedRoute from '../protectedRoute/protectedRoute';
 import UnProtectedRoute from '../unProtectedRoute/unProtectedRoute';
-import AuthService from '../../service/auth_service';
 import { Routes, Route } from 'react-router-dom';
+import Maker from '../maker/maker';
 
 const MainContainer = (props) => {
   return (
-    <section className={styles.container}>
-      <Header />
+    <>
       <Routes>
         <Route
           path='/'
+          exact
+          element={
+            <UnProtectedRoute>
+              <Login />
+            </UnProtectedRoute>
+          }
+        />
+        <Route
+          path='login'
           exact
           element={
             <UnProtectedRoute>
@@ -29,7 +34,7 @@ const MainContainer = (props) => {
           exact
           element={
             <ProtectedRoute>
-              <ContentContainer />
+              <Maker />
             </ProtectedRoute>
           }
         />
@@ -43,8 +48,7 @@ const MainContainer = (props) => {
           }
         />
       </Routes>
-      <Footer />
-    </section>
+    </>
   );
 };
 
