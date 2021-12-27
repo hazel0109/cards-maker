@@ -57,15 +57,15 @@ const Maker = ({ state }) => {
     navigate('/login');
   };
 
-  const moveTo = () => {
-    navigate('/test');
+  const handleAddCard = (card) => {
+    setCards([...cards, card]);
   };
 
   return (
     <section className={styles.maker}>
       <Header onLogout={onLogout} />
       <div className={styles.container}>
-        <CardEditor moveTo={moveTo} cards={cards} />
+        <CardEditor cards={cards} handleAddCard={handleAddCard} />
         <CardPreview cards={cards} />
       </div>
       <Footer />
