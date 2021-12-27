@@ -16,6 +16,10 @@ const CardAddForm = ({ handleAddCard }) => {
   };
   const [card, setCard] = useState(initCard);
 
+  const onFileChange = (file) => {
+    setCard({ ...card, fileName: file.name, fileURL: file.url });
+  };
+
   const handleInput = (e) => {
     setCard({ ...card, [e.target.name]: e.target.value });
   };
@@ -79,7 +83,7 @@ const CardAddForm = ({ handleAddCard }) => {
         value={card.message}
         onChange={handleInput}
       ></textarea>
-      <ImageFileInput />
+      <ImageFileInput name={card.fileName} onFileChange={onFileChange} />
       <Button name='Add' type='submit' onClick={onSubmit} />
     </form>
   );

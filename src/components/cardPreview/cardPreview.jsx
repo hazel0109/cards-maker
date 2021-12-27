@@ -3,7 +3,9 @@ import styles from './cardPreview.module.css';
 import Card from '../card/card';
 
 const CardPreview = ({ cards }) => {
-  const list = cards.map((card) => <Card key={card.id} card={card} />);
+  const list = Object.values(cards).map((card) => (
+    <Card key={card.id} card={card} />
+  ));
 
   return (
     <section className={styles.preview}>
