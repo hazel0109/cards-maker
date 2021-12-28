@@ -1,7 +1,5 @@
 import React from 'react';
-// import styles from './mainContainer.module.css';
 import Login from '../login/login';
-import Test from '../test/test';
 import ProtectedRoute from '../protectedRoute/protectedRoute';
 import UnProtectedRoute from '../unProtectedRoute/unProtectedRoute';
 import { Routes, Route } from 'react-router-dom';
@@ -35,15 +33,6 @@ const MainContainer = (props) => {
           element={
             <ProtectedRoute>
               <Maker />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path='test'
-          exact
-          element={
-            <ProtectedRoute>
-              <Test />
             </ProtectedRoute>
           }
         />

@@ -1,3 +1,4 @@
+import { initializeApp } from 'firebase/app';
 import {
   getAuth,
   signInWithPopup,
@@ -6,9 +7,11 @@ import {
   GithubAuthProvider,
   signOut,
 } from 'firebase/auth';
-import { firebaseApp } from './firebase';
+import { firebase } from './firebase';
+initializeApp(firebase);
 
 class AuthService {
+  static auth = getAuth();
   static login(providerName) {
     let authProvider;
     if (providerName === 'Google') {
@@ -17,8 +20,7 @@ class AuthService {
       authProvider = new GithubAuthProvider();
     }
     // provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
-    const auth = getAuth();
-    return signInWithPopup(auth, authProvider);
+    return signInWithPopup(this.auth, authProvider);
     // .then((result) => {
     // const credential = GithubAuthProvider.credentialFromResult(result);
     // const token = credential.accessToken;
@@ -26,13 +28,11 @@ class AuthService {
   }
 
   static logout(onOut) {
-    const auth = getAuth();
-    signOut(auth);
+    signOut(this.auth);
   }
 
   static onAuthChange(onUserChanged) {
-    const auth = getAuth();
-    onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(this.auth, (user) => {
       onUserChanged(user);
     });
   }

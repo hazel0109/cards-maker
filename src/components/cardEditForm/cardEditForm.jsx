@@ -4,8 +4,7 @@ import ImageFileInput from '../imageFileInput/imageFileInput';
 import styles from './cardEditForm.module.css';
 
 const CardEditForm = ({ card, updateCard, deleteCard }) => {
-  const { name, company, title, email, message, theme, fileName, fileURL } =
-    card;
+  const { name, company, title, email, message, theme, fileName } = card;
   const [editBtn, setEditBtn] = useState(false);
   const [btnEditName, setBtnEditName] = useState('Edit');
 

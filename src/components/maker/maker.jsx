@@ -7,50 +7,25 @@ import CardEditor from '../cardEditor/cardEditor';
 import CardPreview from '../cardPreview/cardPreview';
 import { useAuth } from '../useAuth/useAuth';
 import AuthService from '../../service/auth_service';
+import CardRepository from '../../service/cardRepository';
 
 const Maker = ({ state }) => {
   const [userInfo, setUserInfo] = useState({});
-  const [cards, setCards] = useState({
-    1: {
-      id: '1',
-      name: 'Hazel',
-      company: 'Ramp',
-      theme: 'light',
-      title: 'Software Engineer',
-      email: 'hazel@gmail.com',
-      message: 'go for it',
-      fileName: 'hazel',
-      fileURL: null,
-    },
-    2: {
-      id: '2',
-      name: 'Jimmy',
-      company: 'Clearmax',
-      theme: 'dark',
-      title: 'Software Engineer',
-      email: 'jimmy@gmail.com',
-      message: 'go for it',
-      fileName: 'jimmy',
-      fileURL: null,
-    },
-    3: {
-      id: '3',
-      name: 'John',
-      company: 'Apple',
-      theme: 'colorful',
-      title: 'Software Engineer',
-      email: 'john@gmail.com',
-      message: 'go for it',
-      fileName: 'john',
-      fileURL: null,
-    },
-  });
+  const [cards, setCards] = useState({});
   const navigate = useNavigate();
   const auth = useAuth();
 
   useEffect(() => {
     setUserInfo(auth);
   }, []);
+
+  useEffect(() => {
+    if (!userInfo) return;
+    const stopSync = CardRepository.syncCards(userInfo.id, (cards) => {
+      setCards(cards);
+    });
+    return () => stopSync();
+  }, [userInfo]);
 
   const onLogout = () => {
     AuthService.logout();
@@ -59,15 +34,16 @@ const Maker = ({ state }) => {
 
   const handleAddCard = (card) => {
     setCards({ ...cards, [card.id]: card });
+    CardRepository.saveCard(userInfo.id, card);
   };
 
   const updateCard = (card) => {
     setCards((cards) => {
       const updated = { ...cards };
       updated[card.id] = card;
-      // console.log(updated);
       return updated;
     });
+    CardRepository.saveCard(userInfo.id, card);
   };
 
   const deleteCard = (cardId) => {
@@ -76,6 +52,7 @@ const Maker = ({ state }) => {
       delete list[cardId];
       return list;
     });
+    CardRepository.removeCard(userInfo.id, cardId);
   };
 
   return (
