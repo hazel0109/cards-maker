@@ -8,7 +8,11 @@ export const AuthContextProvider = ({ children }) => {
   useEffect(() => {
     const unSubscribe = AuthService.onAuthChange((user) => {
       user
-        ? setUser({ id: user.uid, name: user.displayName, pic: user.photoURL })
+        ? setUser({
+            id: user.uid,
+            name: user.displayName || 'Hello',
+            pic: user.photoURL,
+          })
         : setUser({});
     });
     return () => unSubscribe();

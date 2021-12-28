@@ -13,28 +13,31 @@ initializeApp(firebase);
 class AuthService {
   static auth = getAuth();
   static login(providerName) {
-    let authProvider;
-    if (providerName === 'Google') {
-      authProvider = new GoogleAuthProvider();
-    } else if (providerName === 'Github') {
-      authProvider = new GithubAuthProvider();
-    }
-    // provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+    let authProvider = this.getProvider(providerName);
+    // if (providerName === 'Google') {
+    //   authProvider = new GoogleAuthProvider();
+    // } else if (providerName === 'Github') {
+    //   authProvider = new GithubAuthProvider();
+    // }
     return signInWithPopup(this.auth, authProvider);
-    // .then((result) => {
-    // const credential = GithubAuthProvider.credentialFromResult(result);
-    // const token = credential.accessToken;
-    // });
   }
-
-  static logout(onOut) {
+  static logout() {
     signOut(this.auth);
   }
-
   static onAuthChange(onUserChanged) {
     onAuthStateChanged(this.auth, (user) => {
       onUserChanged(user);
     });
+  }
+  static getProvider(providerName) {
+    switch (providerName) {
+      case 'Google':
+        return new GoogleAuthProvider();
+      case 'Github':
+        return new GithubAuthProvider();
+      default:
+        throw new Error(`not supported provider ${providerName}`);
+    }
   }
 }
 

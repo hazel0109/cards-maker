@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import styles from './maker.module.css';
 import { useNavigate } from 'react-router-dom';
 import Header from '../header/header';
@@ -27,10 +27,10 @@ const Maker = ({ state }) => {
     return () => stopSync();
   }, [userInfo]);
 
-  const onLogout = () => {
+  const onLogout = useCallback(() => {
     AuthService.logout();
     navigate('/login');
-  };
+  });
 
   const handleAddCard = (card) => {
     setCards({ ...cards, [card.id]: card });

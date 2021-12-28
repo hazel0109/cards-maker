@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { memo, useState } from 'react';
 import Button from '../button/button';
 import ImageFileInput from '../imageFileInput/imageFileInput';
 import styles from './cardAddForm.module.css';
 
-const CardAddForm = ({ handleAddCard }) => {
+const CardAddForm = memo(({ handleAddCard }) => {
   const initCard = {
     name: '',
     company: '',
@@ -87,6 +87,6 @@ const CardAddForm = ({ handleAddCard }) => {
       <Button name='Add' type='submit' onClick={onSubmit} />
     </form>
   );
-};
+});
 
 export default CardAddForm;
