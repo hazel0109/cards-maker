@@ -1,0 +1,37 @@
+@value makerBlack, makerGreen, makerWhite, makerLightPink from '../../common/colors.css';
+
+.container {
+  color: makerBlack;
+  width: 28vw;
+  text-align: center;
+}
+
+.main {
+  background-color: makerWhite;
+  padding: 0.8em 0.2em;
+}
+
+.buttons {
+  margin: 1.3em 0;
+}
+
+.button {
+  background-color: makerWhite;
+  border: 2px solid makerGreen;
+  border-radius: 14px;
+  width: 95%;
+  height: 2.5em;
+  margin: 0.2em 0;
+  font-size: 1rem;
+  outline: 0;
+  background-color: transparent;
+}
+
+.button:hover {
+  background-color: makerLightPink;
+}
+
+.title {
+  font-size: 1.3rem;
+  margin-top: 0.5em;
+}
