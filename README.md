@@ -13,4 +13,4 @@ Want to use the app? Please click the link!
 <br />
 Add your business cards!
 <br />
-![demo](public/images/demo.png) <br /><br />
+<img src="public/images/demo.png" width="600"><br /><br />
