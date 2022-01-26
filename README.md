@@ -7,10 +7,10 @@
 
 ## Usage
 
-Want to use the app? Please click the link below!<br />
-<a href="https://business-cards-maker.netlify.app">
+Want to use the app? Please click the link below!
+<a href="https://business-cards-maker.netlify.app">Business Cards Maker</a>
 
-
+<br />
 Add your business cards!
 <br />
 ![demo](public/images/demo.png) <br /> <br />
